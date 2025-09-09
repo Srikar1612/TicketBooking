@@ -24,7 +24,7 @@ public class TrainServices {
         loadTrains();
     }
     public void loadTrains() throws IOException {
-        trains=mapper.readValue(new File(trainFilePath), new TypeReference<List<Train>>() {
+        trains=mapper.readValue(new File(trainFilePath), new TypeReference<>() {
         });
     }
     public void addTrain(Train train) throws IOException {

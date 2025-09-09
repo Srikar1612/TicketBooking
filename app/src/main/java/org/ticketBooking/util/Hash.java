@@ -11,10 +11,9 @@ public class Hash {
         return hash.getResult();
     }
     public boolean checkPassword(String password, String hashedPassword){
-        boolean passwordMatch = Password
+        return Password
                 .check(password, hashedPassword)
                 .addPepper("Secret-Key")
                 .with(bcrypt);
-        return passwordMatch;
     }
 }

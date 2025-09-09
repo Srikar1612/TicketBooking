@@ -29,7 +29,7 @@ public class UserBookingService {
         return loginSuccess;
     }
     public void loadUsersFromJson() throws IOException{
-        userList=mapper.readValue(new File(userFilePath), new TypeReference<List<User>>() {
+        userList=mapper.readValue(new File(userFilePath), new TypeReference<>() {
         });
     }
     public void signUp(User user) {
@@ -52,7 +52,7 @@ public class UserBookingService {
     public void fetchBooking() {
         try {
             Optional<User> user1 = userList.stream().filter(user2 -> user2.getUserID().equalsIgnoreCase(user.getUserID()) && user2.getPassword().equals(user.getPassword())).findFirst();
-            if (user1.isPresent()) user1.get().printTickets();
+            user1.ifPresent(User::printTickets);
         }
         catch (Exception e) {
             e.printStackTrace();

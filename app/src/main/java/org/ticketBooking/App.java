@@ -3,7 +3,6 @@
  */
 package org.ticketBooking;
 
-import org.ticketBooking.entities.Ticket;
 import org.ticketBooking.entities.Train;
 import org.ticketBooking.entities.User;
 import org.ticketBooking.services.UserBookingService;
@@ -19,7 +18,7 @@ public class App {
     public static final String ANSI_RESET="\u001B[0m";
     public static void main(String[] args) throws IOException {
         System.out.println("Train Booking System Running.......");
-        int option=0;
+        int option;
         int trainOption;
         Train selectedTrain = null;
         String source="", destination="";
@@ -34,7 +33,7 @@ public class App {
             return;
         }
         Scanner sc=new Scanner(System.in);
-        while(option!=7){
+        while(true){
             System.out.println("Menu");
             System.out.println("1. Sign Up");
             System.out.println("2. Login");
@@ -59,7 +58,7 @@ public class App {
                     String password= sc.nextLine();
                     password=hash.hashPassword(password);
                     String userID = UUID.randomUUID().toString();
-                    User user = new User(name, userID, email, password, phone, address, new ArrayList<Ticket>());
+                    User user = new User(name, userID, email, password, phone, address, new ArrayList<>());
                     userBookingService.signUp(user);
                     break;
                 case 2:
@@ -118,7 +117,7 @@ public class App {
                     if(userBookingService.LoginSuccess()) {
                         System.out.println("Select a Seat from below given seats");
                         System.out.println(ANSI_WHITE_BACKGROUND);
-                        int i = 0;
+                        assert selectedTrain != null;
                         List<List<Boolean>> seats = userBookingService.fetchSeats(selectedTrain);
                         for (List<Boolean> row : seats) {
                             for (Boolean b : row) {
