@@ -7,7 +7,6 @@ This project manages trains, users, and ticket bookings using **JSON files** for
 
 ## 🚀 Features
 - Add and manage users.
-- Add and manage trains.
 - Book and cancel tickets.
 - View train availability.
 - Data stored in simple **JSON files** (`Users.json`, `Trains.json`).
